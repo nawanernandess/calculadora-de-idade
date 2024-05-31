@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --default: #32926f;
+  --gray-default: #525252;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculate-age {
+  width: 700px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.calculate-age h1 {
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--default);
+}
+
+.calculate-age header span {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gray-default);
+}
+
+.calculate-age .age-form-container {
+  display: flex;
+}
+
+.calculate-age .age-form-container .form-input-container {
+  gap: 32px;
+}
+
+.calculate-age header,
+.calculate-age .age-form-container .form-input-container,
+.calculate-age .age-form-container .form-input-container .input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.calculate-age header,
+.calculate-age .age-form-container .form-input-container .input-container {
+  gap: 8px;
+}
+
+.calculate-age
+  .age-form-container
+  .form-input-container
+  .input-container
+  label {
+  font-size: 12px;
+  color: var(--gray-default);
+}
+
+.calculate-age
+  .age-form-container
+  .form-input-container
+  .input-container
+  .input-form {
+  height: 40px;
+  color: #334155;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+}
+
+button {
+  width: 18%;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--default);
+  padding: 8px 32px;
+  background-color: white;
+  border: 2px solid var(--default);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.calculate-age .age-form-container .age-result-container {
+  position: relative;
+}
+
+.calculate-age .age-form-container .age-result-container::before {
+  content: "";
+  height: 100%;
+  width: 2px;
+  position: absolute;
+  background-color: var(--default);
+}
+
+.calculate-age .age-form-container .age-result-container .result-container {
+  padding: 0 16px;
+}
+
+/* Utilities */
+.w-100 {
+  width: 100%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-80 {
+  width: 80%;
+}

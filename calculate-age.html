@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="calculate-age">
+      <header>
+        <h1>Calcular Idade</h1>
+        <span>Cálculo rápido e preciso da sua idade</span>
+      </header>
+
+      <section class="age-form-container">
+        <div class="w-100">
+          <form class="w-80 form-input-container">
+            <div class="input-container">
+              <label>Dia</label>
+              <select class="input-form" type="number" name="day" id="day">
+                <option value="">01</option>
+              </select>
+            </div>
+
+            <div class="input-container">
+              <label>Mês</label>
+              <select class="input-form" type="text" name="month" id="month">
+                <option value="">Janeiro</option>
+                <option value="">Fevereiro</option>
+              </select>
+            </div>
+
+            <div class="input-container">
+              <label>Ano</label>
+              <input class="input-form" type="number" name="year" id="year" />
+            </div>
+          </form>
+        </div>
+
+        <div class="age-result-container w-100">
+          <section class="result-container">Resultado aqui</section>
+        </div>
+      </section>
+
+      <button type="submit">Calcular</button>
+    </section>
+  </body>
+</html>
