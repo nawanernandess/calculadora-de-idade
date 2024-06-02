@@ -7,60 +7,62 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <section class="calculate-age">
-      <header>
-        <h1>Calcular Idade</h1>
-        <span>Cálculo rápido e preciso da sua idade</span>
-      </header>
+    <div class="body-container">
+      <section class="calculate-age">
+        <header>
+          <h1>Calcular Idade</h1>
+          <span>Cálculo rápido e preciso da sua idade</span>
+        </header>
 
-      <section class="age-form-container">
-        <div class="age-info-container">
-          <form class="form-input-container">
-            <div class="input-container">
-              <label>Dia</label>
-              <select class="input-form" type="number" name="day" id="day">
-                <option value="">01</option>
-              </select>
-            </div>
+        <section class="age-form-container">
+          <div class="age-info-container">
+            <form class="form-input-container">
+              <div class="input-container">
+                <label>Dia</label>
+                <select class="input-form" type="number" name="day" id="day">
+                  <option value="">01</option>
+                </select>
+              </div>
 
-            <div class="input-container">
-              <label>Mês</label>
-              <select class="input-form" type="text" name="month" id="month">
-                <option value="">Janeiro</option>
-                <option value="">Fevereiro</option>
-              </select>
-            </div>
+              <div class="input-container">
+                <label>Mês</label>
+                <select class="input-form" type="text" name="month" id="month">
+                  <option value="">Janeiro</option>
+                  <option value="">Fevereiro</option>
+                </select>
+              </div>
 
-            <div class="input-container">
-              <label>Ano</label>
-              <input class="input-form" type="number" name="year" id="year" />
-            </div>
-          </form>
-        </div>
-
-        <div class="age-result-container">
-          <div class="result-container">
-            <section class="result">
-              <label>Idade</label>
-              <span>25 anos</span>
-            </section>
-            <section class="result">
-              <label>Mês</label>
-              <span>5 meses</span>
-            </section>
-            <section class="result">
-              <label>Dia</label>
-              <span>365 dias</span>
-            </section>
-            <section class="result">
-              <label>Aniversario</label>
-              <span>201 dias</span>
-            </section>
+              <div class="input-container">
+                <label>Ano</label>
+                <input class="input-form" type="number" name="year" id="year" />
+              </div>
+            </form>
           </div>
-        </div>
-      </section>
 
-      <button type="submit">Calcular</button>
-    </section>
+          <div class="age-result-container">
+            <div class="result-container">
+              <section class="result">
+                <label>Idade</label>
+                <span>25 anos</span>
+              </section>
+              <section class="result">
+                <label>Mês</label>
+                <span>5 meses</span>
+              </section>
+              <section class="result">
+                <label>Dia</label>
+                <span>365 dias</span>
+              </section>
+              <section class="result">
+                <label>Aniversario</label>
+                <span>201 dias</span>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <button type="submit">Calcular</button>
+      </section>
+    </div>
   </body>
 </html>

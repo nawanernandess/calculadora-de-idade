@@ -13,6 +13,10 @@
 body {
   width: 100vw;
   height: 100vh;
+}
+
+.body-container {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +151,16 @@ body {
 
 @media (max-width: 490px) {
   body {
-    padding: 40px 0;
+    width: auto;
+    height: auto;
+  }
+
+  .calculate-age {
+    width: 100%;
+  }
+
+  .body-container {
+    padding: 20px;
   }
 
   .calculate-age .age-form-container {
@@ -157,5 +170,16 @@ body {
 
   .calculate-age .age-form-container .age-info-container .form-input-container {
     width: 100%;
+  }
+
+  .calculate-age .age-form-container .age-result-container::before {
+    width: 100%;
+    height: 2px;
+  }
+
+  .calculate-age .age-form-container .age-result-container .result-container {
+    padding: 16px 0 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
