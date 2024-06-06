@@ -20,15 +20,16 @@
               <div class="input-container">
                 <label>Dia</label>
                 <select class="input-form" type="number" name="day" id="day">
-                  <option value="">01</option>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
                 </select>
               </div>
 
               <div class="input-container">
                 <label>Mês</label>
                 <select class="input-form" type="text" name="month" id="month">
-                  <option value="">Janeiro</option>
-                  <option value="">Fevereiro</option>
+                  <option value="00">Janeiro</option>
+                  <option value="01">Fevereiro</option>
                 </select>
               </div>
 
@@ -61,8 +62,10 @@
           </div>
         </section>
 
-        <button type="submit">Calcular</button>
+        <button type="submit" onclick="ageResult()">Calcular</button>
       </section>
     </div>
+
+    <script src="index.js"></script>
   </body>
 </html>
