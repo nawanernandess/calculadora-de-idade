@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body onload="ageResult()">
     <div class="body-container">
       <section class="calculate-age">
         <header>
@@ -44,19 +44,19 @@
             <div class="result-container">
               <section class="result">
                 <label>Idade</label>
-                <span>25 anos</span>
+                <span id="yaear-value">0</span>
               </section>
               <section class="result">
                 <label>Mês</label>
-                <span>5 meses</span>
+                <span id="month-value">0</span>
               </section>
               <section class="result">
                 <label>Dia</label>
-                <span>365 dias</span>
+                <span id="day-value">0</span>
               </section>
               <section class="result">
                 <label>Aniversario</label>
-                <span>201 dias</span>
+                <span id="birthDay-value">0</span>
               </section>
             </div>
           </div>

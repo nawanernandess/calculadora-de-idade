@@ -1,39 +1,39 @@
-const dateNow = new Date();
+const todayDate = new Date();
 
 function ageResult() {
-  const dateSelected = dateSelected();
-  let years = dateNow.getFullYear() - dateSelected.getFullYear();
-  let months = dateNow.getMonth() - dateSelected.getMonth();
-  let days = dateNow.getDate() - dateSelected.getDate();
-  let birthday = birthDay(dateSelected);
+  const selectedBirthDate = selectBirthDate();
+  let years = todayDate.getFullYear() - selectedBirthDate.getFullYear();
+  let months = todayDate.getMonth() - selectedBirthDate.getMonth();
+  let days = todayDate.getDate() - selectedBirthDate.getDate();
+  let birthday = birthDay(selectedBirthDate);
 
-  return {
-    years,
-    months,
-    days,
-    birthday,
-  };
+  document.getElementById("yaear-value").innerHTML = `${years} Anos`;
+  document.getElementById("month-value").innerHTML = `${months} Meses`;
+  document.getElementById("day-value").innerHTML = `${days} Dias`;
+  document.getElementById("birthDay-value").innerHTML = `${birthday} Dias`;
+
+  return;
 }
 
 function birthDay(birthday) {
   let birth = new Date(birthday);
   let nextBirth = new Date(
-    dateNow.getFullYear(),
+    todayDate.getFullYear(),
     birth.getMonth(),
     birth.getDate()
   );
 
-  if (dateNow > nextBirth) {
-    nextBirth.setFullYear(dateNow.getFullYear() + 1);
+  if (todayDate > nextBirth) {
+    nextBirth.setFullYear(todayDate.getFullYear() + 1);
   } else {
     return "Feliz Aniversário!!";
   }
 
-  let byrdayMillSecond = nextBirth - dateNow;
+  let byrdayMillSecond = nextBirth - todayDate;
   return Math.ceil(byrdayMillSecond / (1000 * 60 * 60 * 24));
 }
 
-function dateSelected() {
+function selectBirthDate() {
   let day = document.querySelector("#day");
   let month = document.querySelector("#month");
   let year = document.querySelector("#year");
