@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body onload="ageResult()">
+  <body onload="init()">
     <div class="body-container">
       <section class="calculate-age">
         <header>
@@ -19,23 +19,42 @@
             <form class="form-input-container">
               <div class="input-container">
                 <label>Dia</label>
-                <select class="input-form" type="number" name="day" id="day">
-                  <option value="01">01</option>
-                  <option value="02">02</option>
-                </select>
+                <select
+                  class="input-form"
+                  onchange="selectBirthDate()"
+                  type="number"
+                  name="day"
+                  id="day"
+                ></select>
               </div>
 
               <div class="input-container">
                 <label>Mês</label>
-                <select class="input-form" type="text" name="month" id="month">
-                  <option value="00">Janeiro</option>
-                  <option value="01">Fevereiro</option>
-                </select>
+                <select
+                  class="input-form"
+                  onchange="selectBirthDate()"
+                  type="text"
+                  name="month"
+                  id="month"
+                ></select>
               </div>
 
               <div class="input-container">
                 <label>Ano</label>
-                <input class="input-form" type="number" name="year" id="year" />
+                <div class="error">
+                  <input
+                    class="input-form"
+                    onkeyup="selectBirthDate()"
+                    pattern="/^-?\d+\.?\d*$/"
+                    onKeyPress="if(this.value.length == 4) return false;"
+                    type="number"
+                    name="year"
+                    id="year"
+                  />
+                  <span class="hidden-info" id="error">
+                    Por favor, insira um valor válido.</span
+                  >
+                </div>
               </div>
             </form>
           </div>
@@ -44,19 +63,19 @@
             <div class="result-container">
               <section class="result">
                 <label>Idade</label>
-                <span id="yaear-value">0</span>
+                <span id="yaear-value">0 Anos</span>
               </section>
               <section class="result">
                 <label>Mês</label>
-                <span id="month-value">0</span>
+                <span id="month-value">0 Meses</span>
               </section>
               <section class="result">
                 <label>Dia</label>
-                <span id="day-value">0</span>
+                <span id="day-value">0 Dias</span>
               </section>
               <section class="result">
                 <label>Aniversario</label>
-                <span id="birthDay-value">0</span>
+                <span id="birthDay-value">0 Dias</span>
               </section>
             </div>
           </div>
