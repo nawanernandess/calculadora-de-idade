@@ -159,12 +159,17 @@ body {
   .form-input-container
   .input-container
   .info-error {
-  display: block;
+  display: block !important;
   color: red;
   font-size: small;
 }
 
-.hidden-info {
+.calculate-age
+  .age-form-container
+  .age-info-container
+  .form-input-container
+  .input-container
+  .hidden-info {
   display: none;
 }
 
@@ -184,6 +189,10 @@ body {
   .input-container
   input {
   padding: 0 4px;
+}
+
+::-webkit-input-placeholder {
+  font-size: medium;
 }
 
 .calculate-age .age-form-container .age-result-container {

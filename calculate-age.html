@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Calculadora de idade: anos, meses, dias e aniversário</title>
+    <link
+      rel="shortcut icon"
+      type="imagex/png"
+      href="./assets/images/calculator.png"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="init()">
@@ -20,8 +25,8 @@
               <div class="input-container">
                 <label>Dia</label>
                 <select
+                  onchange="getSelectedValues(event)"
                   class="input-form"
-                  onchange="selectBirthDate()"
                   type="number"
                   name="day"
                   id="day"
@@ -31,8 +36,8 @@
               <div class="input-container">
                 <label>Mês</label>
                 <select
+                  onchange="changeDays()"
                   class="input-form"
-                  onchange="selectBirthDate()"
                   type="text"
                   name="month"
                   id="month"
@@ -43,8 +48,9 @@
                 <label>Ano</label>
                 <div class="error">
                   <input
+                    placeholder="Exemplo: 2024"
+                    onkeyup="changeDays()"
                     class="input-form"
-                    onkeyup="selectBirthDate()"
                     pattern="/^-?\d+\.?\d*$/"
                     onKeyPress="if(this.value.length == 4) return false;"
                     type="number"
@@ -52,8 +58,8 @@
                     id="year"
                   />
                   <span class="hidden-info" id="error">
-                    Por favor, insira um valor válido.</span
-                  >
+                    Por favor, insira um valor válido.
+                  </span>
                 </div>
               </div>
             </form>
@@ -74,7 +80,7 @@
                 <span id="day-value">0 Dias</span>
               </section>
               <section class="result">
-                <label>Aniversario</label>
+                <label>Aniversário</label>
                 <span id="birthDay-value">0 Dias</span>
               </section>
             </div>

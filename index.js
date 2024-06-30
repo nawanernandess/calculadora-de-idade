@@ -12,82 +12,46 @@ const months = [
   "Novembro",
   "Dezembro",
 ];
-const dayOfTheMonth = [
-  "01",
-  "02",
-  "03",
-  "04",
-  "05",
-  "06",
-  "07",
-  "08",
-  "09",
-  "10",
-  "11",
-  "12",
-  "13",
-  "14",
-  "15",
-  "16",
-  "17",
-  "18",
-  "19",
-  "20",
-  "21",
-  "22",
-  "23",
-  "24",
-  "25",
-  "26",
-  "27",
-  "28",
-  "29",
-  "30",
-  "31",
-];
 const todayDate = new Date();
-var removeElement = false;
+const day = document.querySelector("#day");
+const month = document.querySelector("#month");
+const year = document.querySelector("#year");
 
 function init() {
-  createOptions(dayOfTheMonth, "#day", "option", true);
-  createOptions(months, "#month", "option");
+  createOptionSelector(months, "#month", "option", true);
+  changeDays();
 }
 
 function ageResult() {
-  const objDate = new Date(
-    selectBirthDate().year,
-    selectBirthDate().month,
-    selectBirthDate().day
+  const adjustMonth = month.options[month.selectedIndex].value - 1;
+  const selectedBirthDate = new Date(
+    year.value,
+    adjustMonth,
+    day.options[day.selectedIndex].value
   );
-  const selectedBirthDate = objDate;
-  let inputStyleErro = document.querySelector("#year");
-  let spanError = document.getElementById("error");
-  let yearEmpty = selectBirthDate().year;
+
   let years = todayDate.getFullYear() - selectedBirthDate.getFullYear();
   let months = todayDate.getMonth() - selectedBirthDate.getMonth();
   let days = todayDate.getDate() - selectedBirthDate.getDate();
   let birthday = birthDay(selectedBirthDate);
 
-  if (yearEmpty == "" || yearEmpty.length < 4) {
-    inputStyleErro.classList.add("input-border-error");
-    spanError.classList.add("info-error");
-    showHtml(0, 0, 0, 0);
-    return;
-  } else {
-    inputStyleErro.classList.remove("input-border-error");
-    spanError.classList.remove("info-error");
+  if (
+    months < 0 ||
+    (months === 0 && todayDate.getDate() < selectedBirthDate.getDate())
+  ) {
+    years--;
+    months += 12;
   }
 
-  showHtml(years, months, days, birthday);
+  showResultHtml(years, months, days, birthday);
   return;
 }
 
 function birthDay(birthday) {
-  let birth = new Date(birthday);
   let nextBirth = new Date(
     todayDate.getFullYear(),
-    birth.getMonth(),
-    birth.getDate()
+    birthday.getMonth(),
+    birthday.getDate()
   );
 
   if (todayDate > nextBirth) {
@@ -98,56 +62,49 @@ function birthDay(birthday) {
   return Math.ceil(byrdayMillSecond / (1000 * 60 * 60 * 24));
 }
 
-function selectBirthDate() {
-  let day = document.querySelector("#day");
-  let month = document.querySelector("#month");
-  let year = document.querySelector("#year");
-  let leapYear = isLeapYear(year.value);
-  let array = [...dayOfTheMonth];
+function changeDays() {
+  let months = month.options[month.selectedIndex].value;
+  let selectedDay = getSelectedValues(day);
 
-  if (
-    month.value == 3 ||
-    month.value == 5 ||
-    month.value == 8 ||
-    month.value == 10
-  ) {
-    removeElement = true;
-    array.pop();
-    removeElementHtml(dayOfTheMonth, "#day");
-    createOptions(array, "#day", "option", true);
+  day.innerHTML = "";
+
+  let lastDay = new Date(year.value, months, 0).getDate();
+  let option;
+
+  for (let i = 1; i <= lastDay; i++) {
+    option = document.createElement("option");
+    option.value = i;
+    option.textContent = i;
+    day.appendChild(option);
+  }
+  restoreSelectedValues(day, selectedDay);
+}
+
+function showResultHtml(showYear, month, day, birthday) {
+  let spanError = document.getElementById("error");
+
+  if (year.value == "" || year.value.length < 4) {
+    year.classList.add("input-border-error");
+    spanError.classList.add("info-error");
     return;
   }
 
-  if (month.value == 1) {
-    removeElement = true;
-    if (leapYear) {
-      array.splice(-2);
-      removeElementHtml(dayOfTheMonth, "#day");
-      createOptions(array, "#day", "option", true);
-    } else {
-      array.splice(-3);
-      removeElementHtml(dayOfTheMonth, "#day");
-      createOptions(array, "#day", "option", true);
-    }
-  } else {
-    if (removeElement) {
-      removeElementHtml(dayOfTheMonth, "#day");
-      createOptions(dayOfTheMonth, "#day", "option", true);
-    }
-  }
+  year.classList.remove("input-border-error");
+  spanError.classList.remove("info-error");
 
-  return {
-    year: year.value,
-    month: month.options[month.selectedIndex].value,
-    day: day.options[day.selectedIndex].value,
-  };
+  document.getElementById("yaear-value").innerHTML = `${showYear} Anos`;
+  document.getElementById("month-value").innerHTML = `${month} Meses`;
+  document.getElementById("day-value").innerHTML = `${day} Dias`;
+  document.getElementById(
+    "birthDay-value"
+  ).innerHTML = `Faltam ${birthday} dias para o seu aniversário!`;
 }
 
-function createOptions(
+function createOptionSelector(
   array,
   selectorElement,
   createElement,
-  hasAddCouter = false
+  addCouter = false
 ) {
   array.forEach((month, index) => {
     let selector = document.querySelector(selectorElement);
@@ -155,39 +112,33 @@ function createOptions(
 
     selector.appendChild(elem);
     elem.textContent = month;
-    elem.value = hasAddCouter ? index + 1 : index;
+    elem.value = addCouter ? index + 1 : index;
   });
 }
 
-function removeElementHtml(array, removeSelectorElement) {
-  let selector = document.querySelector(removeSelectorElement);
-
-  array.forEach(() => {
-    if (removeElement) {
-      if (selector.hasChildNodes()) {
-        selector.removeChild(selector.firstElementChild);
-      }
-      return;
+function getSelectedValues(select) {
+  let selectedValues = [];
+  for (let option of select.options) {
+    if (option.selected) {
+      selectedValues.push(option.value);
     }
-  });
-}
-
-function isLeapYear(year) {
-  switch (true) {
-    case year == "":
-      return false;
-    case year % 4 == 0 && year % 100 != 0:
-      return true;
-    case year % 400 == 0:
-      return true;
-    default:
-      return false;
   }
+  return selectedValues;
 }
 
-function showHtml(year, month, day, birthday) {
-  document.getElementById("yaear-value").innerHTML = `${year} Anos`;
-  document.getElementById("month-value").innerHTML = `${month} Meses`;
-  document.getElementById("day-value").innerHTML = `${day} Dias`;
-  document.getElementById("birthDay-value").innerHTML = `${birthday} Dias`;
+function restoreSelectedValues(select, selectedValues) {
+  let valueExists = false;
+
+  for (let option of select.options) {
+    if (selectedValues.includes(option.value)) {
+      option.selected = true;
+      valueExists = true;
+    } else {
+      option.selected = false;
+    }
+  }
+
+  if (!valueExists && select.options.length < 31) {
+    select.options[select.options.length - 1].selected = true;
+  }
 }
