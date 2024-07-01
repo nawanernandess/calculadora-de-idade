@@ -95,9 +95,7 @@ function showResultHtml(showYear, month, day, birthday) {
   document.getElementById("yaear-value").innerHTML = `${showYear} Anos`;
   document.getElementById("month-value").innerHTML = `${month} Meses`;
   document.getElementById("day-value").innerHTML = `${day} Dias`;
-  document.getElementById(
-    "birthDay-value"
-  ).innerHTML = `Faltam ${birthday} dias para o seu aniversário!`;
+  document.getElementById("birthDay-value").innerHTML = `${birthday} Dias`;
 }
 
 function createOptionSelector(
